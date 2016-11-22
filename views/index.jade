@@ -1,0 +1,26 @@
+extends layout
+block content
+    h3 Versión 0.1                
+    table(class="table")
+        tr
+            th(rowspan='2') ALUMNOS
+            td 
+                a(href="alumnoCreate") Insertar (C.)
+        tr
+            td
+                a(href="alumnoRead") Listar (R.U.D.)
+        tr
+            th(rowspan='2') PROFESORES
+            td 
+                a(href="profesorCreate") Insertar (C.)
+        tr
+            td
+                a(href="profesorRead") Listar (R.U.D.)
+        tr
+            th(rowspan='2') ASIGNATURAS
+            td 
+                a(href="asignaturaCreate") Insertar (C.)
+        tr
+            td
+                a(href="asignaturaRead") Listar (R.U.D.)                 
+    

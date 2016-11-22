@@ -1,0 +1,44 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/progress.css')
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js")
+        script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+        script(src="./javascripts/eventButton.js")
+        script(src="./javascripts/progress.js")
+    body
+        div(class="container")
+            div(class="panel-group")
+                div(class="panel panel-info")
+                    div(class="panel-heading", style="text-align:center;")
+                        h2
+                            strong Gestión Académica 
+
+            div
+                nav.navbar.navbar-inverse(role='navigation')
+                    .navbar-header
+                        button.navbar-toggle(type='button', data-target='#navbarCollapse', data-toggle='collapse')
+                            span.sr-only
+                            span.icon-bar
+                            span.icon-bar
+                            span.icon-bar
+                        a.navbar-brand(href='#') Gestión Académica
+                    #navbarCollapse.collapse.navbar-collapse
+                        ul.nav.navbar-nav
+                            li.active
+                                a.glyphicon.glyphicon-home(href='/')
+                            li
+                                a(href='#') Matricular alumnos
+                            li
+                                a(href='#') Asignar asignaturas
+                            li
+                                a(href='#') Créditos                               
+
+            block content
+            footer(class="well") 
+                strong Copyleft 
+                | Rafael Vargas del Moral
+                

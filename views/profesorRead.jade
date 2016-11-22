@@ -1,0 +1,71 @@
+extends layout
+block content
+    body(onLoad="eventButton()")
+        div(id="alerta", class="alert alert-warning", style="display:None; margin-top:25px")
+            a(href="#" class="close" id="closeAlert", aria-label="close")&times;
+            strong ¡Alerta!
+            |  Debe seleccionar al menos una opción.   
+        div(id="myModal", class="modal fade", role="dialog")
+            div(class="modal-dialog")
+                div(class="modal-content")
+                    div(class="modal-header")
+                        button(type="button", class="close", data-dismiss="modal") &times;
+                        h4(class="modal-title") Modificación de profesor
+                    div(class="modal-body")
+                        form(method="POST", class="form-horizontal")
+                            div(class='form-group')
+                                label(class="control-label col-sm-2", for='idUpdate') id
+                                div(class="col-sm-10")
+                                    input("form-control-static", name='idUpdate', id='id', class='form-control', type="number", required)
+                            div(class='form-group')    
+                                label(class="control-label col-sm-2", for='nombreUpdate') Nombre
+                                div(class="col-sm-10")
+                                    input(name='nombreUpdate', id='nombre', class='form-control', type='text', required)
+                            div(class='form-group')    
+                                label(class="control-label col-sm-2",for='apellidosUpdate') Apellidos
+                                div(class="col-sm-10")
+                                    input(name='apellidosUpdate', id='apellidos', class='form-control', type='text', required)
+                            div(class='form-group')    
+                                label(class="control-label col-sm-2",for='asignaturaUpdate') Asignatura
+                                div(class="col-sm-10")
+                                    input(name='asignaturaUpdate', id='asignatura', class='form-control', type='text', required)                                    
+                            div(class='form-group')    
+                                label(class="control-label col-sm-2",for='emailUpdate') e-mail
+                                div(class="col-sm-10")
+                                    input(name='emailUpdate', id='email', class='form-control', type='email', required)
+                            div(class='form-group') 
+                                div(class="control-label col-sm-2")
+                                    button(id="buttonUpdateModal", name="_idUpdate", type="submit", class='btn btn-success', class="glyphicon glyphicon-send", title="enviar")
+                    div(class="modal-footer")
+                        button(type="button", class="btn btn-info", data-dismiss="modal") Cerrar    
+        div(class="row")
+            div(class="col-sm-1")
+                h3
+                    a(href="/", class="glyphicon glyphicon-arrow-left")
+            div(class="col-sm-11")
+                h3 Lista de profesores                        
+        div
+            table(class="table", id="table")
+                form(method="POST", id="form")
+                        th
+                            input(type="checkbox", id="selectAll")
+                        th id
+                        th Nombre
+                        th Apellido
+                        th Asignatura
+                        th e-mail
+                        th 
+                            button(id="buttonRemoveAll", type="button", class="btn btn-warning") Eliminar Seleccionados
+                        each profesor, i in listaProfesores
+                            tr(id="#{profesor._id}")                       
+                                td
+                                    input(type="checkbox", name="id" value="#{profesor._id}")
+                                td #{profesor.id}
+                                td #{profesor.nombre}
+                                td #{profesor.apellidos}
+                                td #{profesor.asignatura}
+                                td #{profesor.email}
+                                td
+                                    div
+                                        button(type="button", id="buttonProfesorUpdate", value="#{profesor._id}", class='btn btn-info', style="margin-right: 5%;", data-toggle="modal", data-target="#myModal") Modificar               
+                                        button(id="buttonRemove", type='summit', name="id", value="#{profesor._id}", class='btn btn-danger') Eliminar

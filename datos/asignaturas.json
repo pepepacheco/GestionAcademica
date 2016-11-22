@@ -1,0 +1,26 @@
+[	{
+	"id" : "1",
+    "denominacion" : "Acceso a datos",
+    "horas" : "5"
+	},
+	{
+	"id" : "2",
+    "denominacion" : "Desarrollo de Interfaces",
+    "horas" : "8"			
+	},
+	{
+	"id" : "3",	
+    "denominacion" : "Programacion de servicios y procesos",
+    "horas" : "3"
+	},
+	{
+	"id" : "4",
+    "denominacion" : "Programacion multimedia y dispositivos moviles",
+    "horas" : "6"
+	},
+	{
+	"id" : "5",
+    "denominacion" : "Sistemas de gestion empresarial",
+    "horas" : "4"
+	}	
+]

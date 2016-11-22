@@ -1,0 +1,29 @@
+extends layout
+block content
+    div(class="row")
+        div(class="col-sm-1")
+            h3
+                a(href="/", class="glyphicon glyphicon-arrow-left")
+        div(class="col-sm-11")
+            h3 Insertar Alumno 
+    hr
+    form(method="POST", class="form-horizontal")
+        div(class='form-group')
+            label(class="control-label col-sm-1", for='idCreate') id
+            div(class="col-sm-11")
+                input("form-control-static", name='idCreate', id='id', class='form-control', type="number", required)
+        div(class='form-group')    
+            label(class="control-label col-sm-1", for='nombreCreate') Nombre
+            div(class="col-sm-11")
+                input(name='nombreCreate', id='nombre', class='form-control', type='text', required)
+        div(class='form-group')    
+            label(class="control-label col-sm-1",for='apellidosCreate') Apellidos
+            div(class="col-sm-11")
+                input(name='apellidosCreate', id='apellidos', class='form-control', type='text', required)
+        div(class='form-group')    
+            label(class="control-label col-sm-1",for='emailCreate') e-mail
+            div(class="col-sm-11")
+                input(name='emailCreate', id='email', class='form-control', type='email', required)
+        div(class='form-group') 
+            div(class="control-label col-sm-1")
+                button(id="buttonCreateModal", type="submit", class='btn btn-success', class="glyphicon glyphicon-send", title="enviar")
