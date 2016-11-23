@@ -2,7 +2,9 @@ var mongoose = require('mongoose');
 
 var asignatura = new mongoose.Schema({
     "id" : Number,
-    "denominacion" : String,
+    "nombre" : String,
+    "ciclo" : String,
+    "curso" : String,
     "horas" : Number
 });
 

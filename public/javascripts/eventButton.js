@@ -74,8 +74,7 @@ function eventButton() {
                 $("#id").attr("placeholder", profesorUpdate.eq(1).text());
                 $("#nombre").attr("placeholder", profesorUpdate.eq(2).text());
                 $("#apellidos").attr("placeholder", profesorUpdate.eq(3).text());
-                $("#asignatura").attr("placeholder", profesorUpdate.eq(4).text());
-                $("#email").attr("placeholder", profesorUpdate.eq(5).text());                
+                $("#email").attr("placeholder", profesorUpdate.eq(4).text());                
             }
         });     
     })

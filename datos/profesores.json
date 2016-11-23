@@ -3,35 +3,30 @@
     "id" : 1,
     "nombre" : "Jacinto D.",
     "apellidos" : "Cabrera Rodriguez",
-    "asignatura" : "Programacion multimedia y dispositivos moviles",
     "email" : "jacinto@iesvirgendelcarmen.com"
 	}, 
     {
     "id" : 2,
     "nombre" : "Manuel",
     "apellidos" : "Molino Milla",
-    "asignatura" : "Programacion de servicios y procesos",
     "email" : "manuel@iesvirgendelcarmen.com"
 	}, 
     {
     "id" : 3,
     "nombre" : "Luis Jose",
     "apellidos" : "Molina Garzo",
-    "asignatura" : "Desarrollo de Interfaces",
     "email" : "luis@iesvirgendelcarmen.com"
 	}, 
     {
     "id" : 4,
     "nombre" : "Juan Gualberto",
     "apellidos" : "Gutierrez Marin",
-    "asignatura" : "Empresa Iniciativa y emprenderoraAcceso a datos",
     "email" : "juangu@iesvirgendelcarmen.com"
 	}, 
     {
     "id" : 5,
     "nombre" : "Juan Jose",
     "apellidos" : "Serrano",
-    "asignatura" : "Sistemas de gestion empresarial",
     "email" : "juanjo@iesvirgendelcarmen.com"
 	}                    
 ]

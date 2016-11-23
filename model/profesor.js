@@ -4,7 +4,6 @@ var profesor = new mongoose.Schema({
     "id" : Number,
     "nombre" : String,
     "apellidos" : String,
-    "asignatura" : String,
     "email" : String
 });
 

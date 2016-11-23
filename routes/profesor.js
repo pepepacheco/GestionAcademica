@@ -13,17 +13,15 @@ router.get('/profesorRead', function (req, res, next) {
             res.render('profesorRead', {"listaProfesores" : data});
         }
     })
-    
 });
 
 router.post('/profesorCreate', function(req, res, next) {
-    if (req.body.idCreate && req.body.nombreCreate && req.body.apellidosCreate && req.body.asignaturaCreate && req.body.emailCreate) {
+    if (req.body.idCreate && req.body.nombreCreate && req.body.apellidosCreate && req.body.emailCreate) {
         var Profesor = mongoose.model('Profesor');
         var profesorInsert = new Profesor({
             "id" : req.body.idCreate,
             "nombre" : req.body.nombreCreate,
             "apellidos" : req.body.apellidosCreate,
-            "asignatura" : req.body.asignaturaCreate,
             "email" : req.body.emailCreate
         });
         profesorInsert.save(function(err, doc) {
@@ -40,12 +38,11 @@ router.post('/profesorCreate', function(req, res, next) {
 router.post("/profesorRead", function(req, res, next) {
     var Profesor = mongoose.model('Profesor');
     if (!(req.body._idUpdate === undefined)) {
-        if (req.body._idUpdate && req.body.idUpdate && req.body.nombreUpdate && req.body.apellidosUpdate && req.body.asignaturaUpdate && req.body.emailUpdate) {
+        if (req.body._idUpdate && req.body.idUpdate && req.body.nombreUpdate && req.body.apellidosUpdate && req.body.emailUpdate) {
             Profesor.update({"_id" : req.body._idUpdate}, {
                 "id" : req.body.idUpdate,
                 "nombre" : req.body.nombreUpdate,
                 "apellidos" : req.body.apellidosUpdate,
-                "asignatura" : req.body.asignaturaUpdate,
                 "email" : req.body.emailUpdate                
             }, function(err, doc) {
                 if (!err)
