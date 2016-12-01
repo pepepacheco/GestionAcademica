@@ -5,6 +5,8 @@ var profesor = new mongoose.Schema({
     "nombre" : String,
     "apellidos" : String,
     "email" : String
+},{
+    versionKey: false    
 });
 
 mongoose.model("Profesor", profesor);

@@ -1,0 +1,47 @@
+extends layout
+block content
+    body(onLoad="eventButton()")
+
+        div(id="alerta", class="alert alert-warning", style="display:None; margin-top:25px")
+            a(href="#" class="close" id="closeAlert", aria-label="close")&times;
+            p(id="textAlerta")
+                strong ¡Alerta!
+                |  Debe seleccionar al menos una opción.
+
+
+        div(class="row")
+            div(class="col-sm-1")
+                h3
+                    a(href="/", class="glyphicon glyphicon-arrow-left")
+            div(class="col-sm-11")
+                h3 Nueva Matrícula 
+        hr
+        div(class="form-horizontal")
+            div(class='form-group')
+                label(class="control-label col-sm-1", for='idCreate') id
+                div(class="col-sm-11")
+                    input("form-control-static", id='id', class='form-control', type="number", required)
+            div(class='form-group')    
+                label(class="control-label col-sm-1", for='alumnoCreate') Alumno
+                div(class="col-sm-11")
+                    select(id='alumno', class='form-control', type='text', required)
+                        each alumno, i in datos[1]
+                            option(value="#{alumno._id}") #{alumno.nombre} #{alumno.apellidos}
+            div(class='form-group')    
+                label(class="control-label col-sm-1", for='asignaturaCreate') Asignatura
+                div(class="col-sm-11")
+                    select(id='asignatura', class='form-control', type='text', required)
+                        each asignatura, i in datos[0]
+                            option(value="#{asignatura._id}" ) #{asignatura.nombre}
+            div(class='form-group')
+                label(class="control-label col-sm-1", for='fechaInicioCreate') Fecha de inicio
+                div(class="col-sm-11")
+                    input("form-control-static", id='fechaInicio', class='form-control', pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}", required)       
+
+            div(class='form-group')
+                label(class="control-label col-sm-1", for='fechaFinCreate') Fecha de finalización
+                div(class="col-sm-11")
+                    input("form-control-static", id='fechaFin', class='form-control', pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}", required)                                
+            div(class='form-group') 
+                div(class="control-label col-sm-1")
+                    button(onclick="nuevaMatricula()", class='btn btn-success', class="glyphicon glyphicon-send")

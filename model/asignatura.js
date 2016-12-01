@@ -1,3 +1,4 @@
+
 var mongoose = require('mongoose');
 
 var asignatura = new mongoose.Schema({
@@ -6,6 +7,8 @@ var asignatura = new mongoose.Schema({
     "ciclo" : String,
     "curso" : String,
     "horas" : Number
+},{
+    versionKey: false
 });
 
 mongoose.model("Asignatura", asignatura);

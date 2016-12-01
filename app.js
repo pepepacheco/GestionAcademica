@@ -8,12 +8,14 @@ var routesIndex = require('./routes/index');
 var routesAlumno = require('./routes/alumno');
 var routesProfesor = require('./routes/profesor');
 var routesAsignatura = require('./routes/asignatura');
+var routesMatricula = require('./routes/matricula.js');
 var users = require('./routes/users');
 var app = express();
 var db = require('./model/db.js');
 var alumnos = require("./model/alumno.js");
 var profesores = require("./model/profesor.js");
 var asignaturas = require("./model/asignatura.js");
+var matriculas = require("./model/matricula.js");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -38,6 +40,7 @@ app.use('/', routesIndex);
 app.use('/', routesAlumno);
 app.use('/', routesProfesor);
 app.use('/', routesAsignatura);
+app.use('/', routesMatricula);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
@@ -70,6 +73,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;

@@ -1,0 +1,35 @@
+extends layout
+block content
+    div(class="row")
+        div(class="col-sm-1")
+            h3
+                a(href="/", class="glyphicon glyphicon-arrow-left")
+        div(class="col-sm-11")
+            h3 Insertar Asignatura 
+    hr
+    form(method="POST", class="form-horizontal")
+        div(class='form-group')
+            label(class="control-label col-sm-1", for='idCreate') id
+            div(class="col-sm-11")
+                input("form-control-static", name='idCreate', id='id', class='form-control', type="number", required)
+        div(class='form-group')    
+            label(class="control-label col-sm-1", for='nombreCreate') Nombre
+            div(class="col-sm-11")
+                input(name='nombreCreate', id='nombre', class='form-control', type='text', required)
+        div(class='form-group')    
+            label(class="control-label col-sm-1", for='cicloCreate') Ciclo
+            div(class="col-sm-11")
+                input(name='cicloCreate', id='ciclo', class='form-control', type='text', required)
+        div(class="form-group")
+            label(class="control-label col-sm-1", for='cursoCreate') Curso     
+            div(class="col-sm-11")
+                select(name='cursoCreate', id='curso', class='form-control', type='text', required)
+                    option Primero
+                    option Segundo
+        div(class='form-group')    
+            label(class="control-label col-sm-1", for='horasCreate') Horas
+            div(class="col-sm-11")
+                input(name='horasCreate', id='horas', class='form-control', type='text', required)
+        div(class='form-group') 
+            div(class="control-label col-sm-1")
+                button(id="buttonCreateModal", type="submit", class='btn btn-success', class="glyphicon glyphicon-send", title="enviar")
