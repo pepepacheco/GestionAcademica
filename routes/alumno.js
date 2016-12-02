@@ -2,11 +2,11 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 
-router.get('/alumnoCreate', function(req, res, next) {
+router.get('/create', function(req, res, next) {
     res.render('alumnoCreate');
 });
 
-router.get('/alumnoRead', function(req, res, next) {
+router.get('/read', function(req, res, next) {
     var alumnos = mongoose.model('Alumno');
     alumnos.find(function(err, data) {
         if (!err) 
@@ -22,7 +22,7 @@ router.get('/alumnoRead', function(req, res, next) {
     });
 });
 
-router.post('/alumnoCreate', function(req, res, next) {
+router.post('/create', function(req, res, next) {
     if (req.body.idCreate && req.body.nombreCreate && req.body.apellidosCreate && req.body.emailCreate) {
         var Alumno = mongoose.model('Alumno');
         var alumnoInsert = new Alumno({
@@ -33,16 +33,16 @@ router.post('/alumnoCreate', function(req, res, next) {
         });
         alumnoInsert.save(function(err, doc) {
             if (!err)
-                res.redirect('/alumnoRead');
+                res.redirect('/alumno/read');
             else
                 console.log('Error al insertar datos');
         })
     }
     else
-        res.redirect('/alumnoCreate');
+        res.redirect('/alumno/create');
 });   
 
-router.post("/alumnoRead", function(req, res, next) {
+router.post("/read", function(req, res, next) {
     var Alumno = mongoose.model('Alumno');
     if (!(req.body._idUpdate === undefined)) {
         if (req.body._idUpdate && req.body.idUpdate && req.body.nombreUpdate && req.body.apellidosUpdate && req.body.emailUpdate) {
@@ -53,11 +53,11 @@ router.post("/alumnoRead", function(req, res, next) {
                 "email" : req.body.emailUpdate                
             }, function(err, doc) {
                 if (!err)
-                    res.redirect('/alumnoRead');
+                    res.redirect('/alumno/read');
             });
         }
         else    
-            res.redirect("/alumnoRead");
+            res.redirect("/alumno/read");
     }
     else if (!(req.body.id === undefined)) {
         var id = [];
@@ -72,7 +72,7 @@ router.post("/alumnoRead", function(req, res, next) {
                     res.redirect('/');
             });
         }   
-        res.redirect("/alumnoRead");
+        res.redirect("/alumno/read");
     }
     else
         res.redirect("/");

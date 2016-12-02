@@ -2,11 +2,11 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 
-router.get('/asignaturaCreate', function(req, res, next) {
+router.get('/create', function(req, res, next) {
     res.render('asignaturaCreate');
 });
 
-router.get('/asignaturaRead', function(req, res, next) {
+router.get('/read', function(req, res, next) {
     var asignaturas = mongoose.model('Asignatura');
     asignaturas.find(function(err, data) {
         if (!err) 
@@ -22,7 +22,7 @@ router.get('/asignaturaRead', function(req, res, next) {
      });
 });
 
-router.post('/asignaturaCreate', function(req, res, next) {
+router.post('/create', function(req, res, next) {
     if (req.body.idCreate && req.body.nombreCreate && req.body.cicloCreate && req.body.cursoCreate && req.body.horasCreate) {
         var Asignatura = mongoose.model('Asignatura');
         var asignaturaInsert = new Asignatura({
@@ -34,16 +34,16 @@ router.post('/asignaturaCreate', function(req, res, next) {
         });
         asignaturaInsert.save(function(err, doc) {
             if (!err)
-                res.redirect('/asignaturaRead');
+                res.redirect('/asignatura/read');
             else
                 console.log('Error al insertar datos');
         })
     }
     else
-        res.redirect('/alumnoCreate');
+        res.redirect('/alumno/create');
 });
 
-router.post("/asignaturaRead", function(req, res, next) {
+router.post("/read", function(req, res, next) {
     var Asignatura = mongoose.model('Asignatura');
     if (!(req.body._idUpdate === undefined)) {
         if (req.body._idUpdate && req.body.idUpdate && req.body.nombreUpdate && req.body.cicloUpdate && req.body.cursoUpdate && req.body.horasUpdate) {
@@ -55,11 +55,11 @@ router.post("/asignaturaRead", function(req, res, next) {
                 "horas" : req.body.horasUpdate            
             }, function(err, doc) {
                 if (!err)
-                    res.redirect('/asignaturaRead');
+                    res.redirect('/asignatura/read');
             });
         }
         else    
-            res.redirect("/asignaturaRead");
+            res.redirect("/asignatura/read");
     }
     else if (!(req.body.id === undefined)) {
         var id = [];
@@ -74,7 +74,7 @@ router.post("/asignaturaRead", function(req, res, next) {
                     res.redirect('/');
             });
         }   
-        res.redirect("/asignaturaRead");
+        res.redirect("/asignatura/read");
     }
     else
         res.redirect("/");

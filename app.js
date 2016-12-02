@@ -9,6 +9,7 @@ var routesAlumno = require('./routes/alumno');
 var routesProfesor = require('./routes/profesor');
 var routesAsignatura = require('./routes/asignatura');
 var routesMatricula = require('./routes/matricula.js');
+var routesAsignacion = require('./routes/asignacion');
 var users = require('./routes/users');
 var app = express();
 var db = require('./model/db.js');
@@ -37,10 +38,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
 app.use('/', routesIndex);
-app.use('/', routesAlumno);
-app.use('/', routesProfesor);
-app.use('/', routesAsignatura);
-app.use('/', routesMatricula);
+app.use('/alumno', routesAlumno);
+app.use('/profesor', routesProfesor);
+app.use('/asignatura', routesAsignatura);
+app.use('/matricula', routesMatricula);
 app.use('/users', users);
 
 // catch 404 and forward to error handler

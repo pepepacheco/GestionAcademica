@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 
-router.get('/matriculaCreate', function(req, res, next) {
+router.get('/create', function(req, res, next) {
     mongoose.model('Alumno').find(function(err, dataAlumno) {
         var alumnos = JSON.parse(JSON.stringify(dataAlumno));
         if (!err) {
@@ -20,7 +20,7 @@ router.get('/matriculaCreate', function(req, res, next) {
     });
 });
 
-router.get('/matriculaRead', function(req, res, next) {
+router.get('/read', function(req, res, next) {
     mongoose.model('Alumno').find(function(err, dataAlumno) {
         var alumnos = JSON.parse(JSON.stringify(dataAlumno));
         if (!err) {
@@ -44,7 +44,7 @@ router.get('/matriculaRead', function(req, res, next) {
     });
 });
 
-router.post('/matriculaRead', function(req, res, next) {
+router.post('/read', function(req, res, next) {
     /*
     console.log(req.body._id);
     console.log(req.body.id);
@@ -72,7 +72,7 @@ router.post('/matriculaRead', function(req, res, next) {
 
 });
 
-router.put('/matriculaCreate', function(req, res, next) {
+router.put('/create', function(req, res, next) {
     if (req.body.id !== undefined && req.body.alumnoId !== undefined && req.body.asignaturaId !== undefined && req.body.fecha_inicio !== undefined && req.body.fecha_fin !== undefined) {
         mongoose.model("Alumno").findOne({"_id" : req.body.alumnoId}, function (err, dataAlumno) {
             mongoose.model("Asignatura").findOne({"_id" : req.body.asignaturaId}, function (err, dataAsignatura) {
@@ -96,7 +96,7 @@ router.put('/matriculaCreate', function(req, res, next) {
         res.redirect('/')
 })
 
-router.delete('/matriculaRead', function(req, res, next) {
+router.delete('/read', function(req, res, next) {
     var id = [];
     if (typeof req.body._id === "object") 
         id = req.body._id;              
