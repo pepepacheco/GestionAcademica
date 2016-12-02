@@ -4,10 +4,15 @@ block content
         div(id="alerta", class="alert alert-warning", style="display:None; margin-top:25px")
             a(href="#" class="close" id="closeAlert", aria-label="close")&times;
             strong ¡Alerta!
-            |  Debe seleccionar al menos una opción. 
-        div(id="myModal", class="modal fade", role="dialog")
+            |  Debe seleccionar al menos una opción.
+        div(id="myModal", class="modal fade", role="dialog")     
             div(class="modal-dialog")
                 div(class="modal-content")
+                    div(id="alertaModal", class="alert alert-warning", style="display:None; margin-top:25px")
+                        a(href="#" class="close" onclick="closeAlertModal()", aria-label="close")&times;
+                        p(id="textAlertaModal")
+                            strong ¡Alerta!
+                            |  Debe seleccionar al menos una opción.                 
                     div(class="modal-header")
                         button(type="button", class="close", data-dismiss="modal") &times;
                         h4(class="modal-title") Modificación de Matricula
@@ -16,57 +21,61 @@ block content
                             div(class='form-group')
                                 label(class="control-label col-sm-2", for='idUpdate') id
                                 div(class="col-sm-10")
-                                    input("form-control-static", name='idUpdate', id='id', class='form-control', type="number", required)
+                                    input(class="form-control-static", name='idUpdate', id='idUpdate', class='form-control', type="number", required)
                             div(class='form-group')    
                                 label(class="control-label col-sm-2", for='asignaturaUpdate') Asignatura
                                 div(class="col-sm-10")
-                                    input(name='asignaturaUpdate', id='nombre', class='form-control', type='text', required)
+                                    select(id='asignaturaUpdate', class='form-control', type='text', required)
+                                        each asignatura, i in datos[0]
+                                            option(value="#{asignatura._id}") #{asignatura.nombre}
                             div(class='form-group')    
-                                label(class="control-label col-sm-2",for='alumnoUpdate') Alumno
+                                label(class="control-label col-sm-2", for='alumnoUpdate') Alumno
                                 div(class="col-sm-10")
-                                    input(name='alumnoUpdate', id='ciclo', class='form-control', type='text', required)
+                                    select(id='alumnoUpdate', class='form-control', type='text', required)
+                                        each alumno, i in datos[1]
+                                            option(value="#{alumno._id}") #{alumno.nombre} #{alumno.apellidos}
                             div(class='form-group')    
                                 label(class="control-label col-sm-2",for='fechaInicioUpdate') Fecha de Inicio
                                 div(class="col-sm-10")
-                                    input(name='FechaInicioUpdate', id='curso', class='form-control', type='text', required)
+                                    input(name='FechaInicioUpdate', id='fechaInicioUpdate', class='form-control', type='text', required)
                             div(class='form-group')    
-                                label(class="control-label col-sm-2",for='FechaFinUpdate') Fecha de finalización
+                                label(class="control-label col-sm-2",for='fechaFinUpdate') Fecha de finalización
                                 div(class="col-sm-10")
-                                    input(name='FechaFinUpdate', id='horas', class='form-control', type='text', min="1", max="8", required)
+                                    input(name='FechaFinUpdate', id='fechaFinUpdate', class='form-control', type='text', min="1", max="8", required)
                             div(class='form-group') 
                                 div(class="control-label col-sm-2")
                                     button(id="buttonUpdateModal", name="_idUpdate", onclick="updateMatricula()", class='btn btn-success', class="glyphicon glyphicon-send", title="enviar")
                     div(class="modal-footer")
                         button(type="button", class="btn btn-info", data-dismiss="modal") Cerrar   
         div(class="row")
-        div(class="col-sm-1")
-            h3
-                a(href="/", class="glyphicon glyphicon-arrow-left")
-        div(class="col-sm-11")
-            h3 Lista de Matriculas                        
-    div
-        table(class="table", id="table")
-            div(id="form")
-                tr
-                    th
-                        input(type="checkbox", id="selectAll")
-                    th id
-                    th Asignatura
-                    th Alumno
-                    th Fecha de Inicio
-                    th Fecha de Finalización
-                    th 
-                        button(id="buttonRemoveAllAjax", type="button", class="btn btn-warning") Eliminar Seleccionados
-                    each matricula, i in listaMatriculas
-                        tr(id="#{matricula._id}")                       
-                            td
-                                input(type="checkbox", name="id" value="#{matricula._id}")
-                            td #{matricula.id}
-                            td #{matricula.asignatura.nombre}
-                            td #{matricula.alumno.nombre}
-                            td #{matricula.fecha_inicio}
-                            td #{matricula.fecha_fin}
-                            td
-                                div
-                                    button(type="button", id="buttonMatriculaUpdate", value="#{matricula._id}", class='btn btn-info', style="margin-right: 5%;", data-toggle="modal", data-target="#myModal") Modificar               
-                                    button(id="buttonRemoveAjax", name="id", value="#{matricula._id}", class='btn btn-danger') Eliminar
+            div(class="col-sm-1")
+                h3
+                    a(href="/", class="glyphicon glyphicon-arrow-left")
+            div(class="col-sm-11")
+                h3 Lista de Matriculas                        
+        div
+            table(class="table", id="table")
+                div(id="form")
+                    tr
+                        th
+                            input(type="checkbox", id="selectAll")
+                        th id
+                        th Asignatura
+                        th Alumno
+                        th Fecha de Inicio
+                        th Fecha de Finalización
+                        th 
+                            button(id="buttonRemoveAllAjax", type="button", class="btn btn-warning") Eliminar Seleccionados
+                        each matricula, i in listaMatriculas
+                            tr(id="#{matricula._id}")                       
+                                td
+                                    input(type="checkbox", name="id" value="#{matricula._id}")
+                                td #{matricula.id}
+                                td #{matricula.asignatura.nombre}
+                                td #{matricula.alumno.nombre} #{matricula.alumno.apellidos}
+                                td #{matricula.fecha_inicio}
+                                td #{matricula.fecha_fin}
+                                td
+                                    div
+                                        button(type="button", id="buttonMatriculaUpdate", value="#{matricula._id}", class='btn btn-info', style="margin-right: 5%;", data-toggle="modal", data-target="#myModal") Modificar               
+                                        button(id="buttonRemoveAjax", name="id", value="#{matricula._id}", class='btn btn-danger') Eliminar
