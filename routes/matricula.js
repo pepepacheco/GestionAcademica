@@ -21,12 +21,54 @@ router.get('/matriculaCreate', function(req, res, next) {
 });
 
 router.get('/matriculaRead', function(req, res, next) {
-    mongoose.model('Matricula').find(function(err, data) {
-        res.render('matriculaRead', {"listaMatriculas" : data});
+    mongoose.model('Alumno').find(function(err, dataAlumno) {
+        var alumnos = JSON.parse(JSON.stringify(dataAlumno));
+        if (!err) {
+            mongoose.model('Asignatura').find({}, function(err, dataAsignatura) {
+                if (!err) {
+                    var asignaturas = JSON.parse(JSON.stringify(dataAsignatura));
+                    mongoose.model('Matricula').find(function(err, data) {
+                        if (!err) {
+                            res.render('matriculaRead', {"listaMatriculas" : data, "datos" : [asignaturas, alumnos]});
+                        }
+                        else
+                            res.redirect('/');                
+                    });
+                }
+                else
+                    res.redirect('/');
+            });
+        }
+        else
+            res.redirect('/');
     });
 });
 
 router.post('/matriculaRead', function(req, res, next) {
+    /*
+    console.log(req.body._id);
+    console.log(req.body.id);
+    console.log(req.body.asignaturaId);
+    console.log(req.body.alumnoId);
+    console.log(req.body.fecha_inicio);
+    console.log(req.body.fecha_fin);
+    */
+    mongoose.model("Alumno").findOne({"_id" : req.body.alumnoId}, function(err, alumno) {
+        mongoose.model("Asignatura").findOne({"_id" : req.body.asignaturaId}, function(err, asignatura) {
+            mongoose.model("Matricula").findOneAndUpdate({"_id" : req.body._id}, {
+                "id" : req.body.id,
+                "asignatura" : asignatura,
+                "alumno" : alumno,
+                "fecha_inicio" : req.body.fecha_inicio,
+                "fecha_fin" : req.body.fecha_fin
+            }, {new: true},
+             function(err, matricula) {
+                if (!err) {
+                    res.json(matricula)
+                }
+            })
+        });
+    });
 
 });
 

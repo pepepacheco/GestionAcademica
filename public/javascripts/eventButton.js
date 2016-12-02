@@ -103,8 +103,8 @@ function eventButton() {
     if (document.getElementById("closeAlert") !== null) {
         var buttonCloseAlert = document.getElementById("closeAlert");
         buttonCloseAlert.addEventListener('click', function () {
-            var buttonSelectAll = document.getElementById("selectAll");
-            $("#alerta").slideUp()
+            //var buttonSelectAll = document.getElementById("selectAll");
+            $("#alerta").slideUp();
         });        
     }
    
@@ -177,12 +177,12 @@ function eventButton() {
 
                     case "buttonMatriculaUpdate":
                         var matriculaUpdate = $("#"+buttonUpdate.value).children();
-                        $("#buttonUpdateModal").attr("value", buttonUpdate.value);
-                        $("#id").val(matriculaUpdate.eq(1).text());
-                        $("#nombre").attr("placeholder", matriculaUpdate.eq(2).text());
-                        $("#ciclo").attr("placeholder", matriculaUpdate.eq(3).text());
-                        $("#curso").attr("placeholder", matriculaUpdate.eq(4).text());
-                        $("#horas").attr("placeholder", matriculaUpdate.eq(5).text());                         
+                        $("#buttonUpdateModal").attr("onclick", "updateMatricula(\""+buttonUpdate.value+"\")");
+                        $("#idUpdate").val(matriculaUpdate.eq(1).text());
+                        $("#asignaturaUpdate").attr("placeholder", matriculaUpdate.eq(2).text());
+                        $("#alumnoUpdate").attr("placeholder", matriculaUpdate.eq(3).text());
+                        $("#fechaInicioUpdate").attr("placeholder", matriculaUpdate.eq(4).text());
+                        $("#fechaFinUpdate").attr("placeholder", matriculaUpdate.eq(5).text());                         
                         break;
                         
                     case "buttonAsignarUpdate":
@@ -208,11 +208,11 @@ function nuevaMatricula() {
                     type : "PUT",
                     url : "/matriculaCreate",
                     data : {
-                        "id" : $("#id").val(),
-                        "asignaturaId" : $("#asignatura").val(),
-                        "alumnoId" : $("#alumno").val(),
-                        "fecha_inicio" : $("#fechaInicio").val(),
-                        "fecha_fin" : $("#fechaFin").val()
+                        "id" : id,
+                        "asignaturaId" : asignaturaId,
+                        "alumnoId" : alumnoId,
+                        "fecha_inicio" : fecha_inicio,
+                        "fecha_fin" : fecha_fin
                     },
                     success : function (data) {
                         $(location).attr('href', '/matriculaRead') 
@@ -239,6 +239,58 @@ function nuevaMatricula() {
     }
 }
 
-function updateMatricula() {
-    // Ajax post
+function updateMatricula(_idUpdate) {
+    var _id = _idUpdate;
+    var id = parseInt($("#idUpdate").val());
+    var asignaturaId = $("#asignaturaUpdate").val();
+    var alumnoId = $("#alumnoUpdate").val();
+    var fecha_inicio = $("#fechaInicioUpdate").val();
+    var fecha_fin = $("#fechaFinUpdate").val();
+
+    if (typeof id === "number" && (!Number.isNaN(id))) {
+        if (typeof fecha_inicio === "string" && fecha_inicio.match(/^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-./])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/)) {
+            if (typeof fecha_fin === "string" && fecha_fin.match(/^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-./])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/)) {
+                $.ajax({
+                    type : "POST",
+                    url : "/matriculaRead",
+                    data : {
+                        "_id" : _id,
+                        "id" : id,
+                        "asignaturaId" : asignaturaId,
+                        "alumnoId" : alumnoId,
+                        "fecha_inicio" : fecha_inicio,
+                        "fecha_fin" : fecha_fin
+                    },
+                    success : function (data) {
+                        $("#myModal").modal("hide");
+                        var rowUpdate = $("#"+data._id+"").children();
+                        rowUpdate.eq(1).html(data.id);
+                        rowUpdate.eq(2).html(data.asignatura.nombre);
+                        rowUpdate.eq(3).html(data.alumno.nombre);
+                        rowUpdate.eq(4).html(data.fecha_inicio);
+                        rowUpdate.eq(5).html(data.fecha_fin);
+                    },
+                    error : function () {
+                        $(location).attr('href', '/')
+                    }
+                });
+            }
+            else {
+                $("#textAlertaModal").html("<strong>¡Alerta!<strong> Fecha de finalización incorrecta");
+                $("#alertaModal").slideDown();
+            }
+        }
+        else {
+            $("#textAlertaModal").html("<strong>¡Alerta!<strong> Fecha de inicio incorrecta");
+            $("#alertaModal").slideDown();
+        }
+    }
+    else {
+        $("#textAlertaModal").html("<strong>¡Alerta!<strong> ID Incorrecto");    
+        $("#alertaModal").slideDown();
+    }
+}
+
+function closeAlertModal() {
+    $("#alertaModal").slideUp();
 }
