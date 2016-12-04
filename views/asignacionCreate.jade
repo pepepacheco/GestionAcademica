@@ -1,0 +1,49 @@
+extends layout
+block content
+    body(onLoad="eventButton()")
+        div(id="alerta", class="alert alert-warning", style="display:None; margin-top:25px")
+            a(href="#" class="close" id="closeAlert", aria-label="close")&times;
+            p(id="textAlerta")
+                strong ¡Alerta!
+                |  Debe seleccionar al menos una opción.
+        div(class="row")
+            div(class="col-sm-1")
+                h3
+                    a(href="/", class="glyphicon glyphicon-arrow-left")
+            div(class="col-sm-11")
+                h3 Nueva Asignación 
+        hr
+        div(class="form-horizontal")
+            div(class='form-group')
+                label(class="control-label col-sm-1") id
+                div(class="col-sm-11")
+                    input("form-control-static", id='id', class='form-control')
+            div(class='form-group')    
+                label(class="control-label col-sm-1") Profesor
+                div(class="col-sm-11")
+                    select(id='profesor', class='form-control')
+                        each profesor, i in data.profesor
+                            option(value="#{profesor._id}") #{profesor.nombre} #{profesor.apellidos}
+            div(class='form-group')    
+                label(class="control-label col-sm-1") Asignatura
+                div(class="col-sm-11")
+                    select(id='asignatura', class='form-control')
+                        each asignatura, i in data.asignatura
+                            option(value="#{asignatura._id}" ) #{asignatura.nombre}
+            div(class='form-group')
+                label(class="control-label col-sm-1") Horas
+                div(class="col-sm-11")
+                    input("form-control-static", id='horas', class='form-control')     
+
+            div(class='form-group')
+                label(class="control-label col-sm-1") Fecha de inicio
+                div(class="col-sm-11")
+                    input("form-control-static", id='fechaInicio', class='form-control')       
+
+            div(class='form-group')
+                label(class="control-label col-sm-1", for='fechaFinCreate') Fecha de finalización
+                div(class="col-sm-11")
+                    input("form-control-static", id='fechaFin', class='form-control')                                
+            div(class='form-group') 
+                div(class="control-label col-sm-1")
+                    button(onclick="nuevaAsignacion()", class='btn btn-success', class="glyphicon glyphicon-send")

@@ -9,7 +9,7 @@ var routesAlumno = require('./routes/alumno');
 var routesProfesor = require('./routes/profesor');
 var routesAsignatura = require('./routes/asignatura');
 var routesMatricula = require('./routes/matricula.js');
-var routesAsignacion = require('./routes/asignacion');
+var routesAsignacion = require('./routes/asignacion.js');
 var users = require('./routes/users');
 var app = express();
 var db = require('./model/db.js');
@@ -17,6 +17,7 @@ var alumnos = require("./model/alumno.js");
 var profesores = require("./model/profesor.js");
 var asignaturas = require("./model/asignatura.js");
 var matriculas = require("./model/matricula.js");
+var asignaciones = require("./model/asignacion.js");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,6 +43,7 @@ app.use('/alumno', routesAlumno);
 app.use('/profesor', routesProfesor);
 app.use('/asignatura', routesAsignatura);
 app.use('/matricula', routesMatricula);
+app.use('/asignacion', routesAsignacion);
 app.use('/users', users);
 
 // catch 404 and forward to error handler

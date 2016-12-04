@@ -1,14 +1,11 @@
 extends layout
 block content
     body(onLoad="eventButton()")
-
         div(id="alerta", class="alert alert-warning", style="display:None; margin-top:25px")
             a(href="#" class="close" id="closeAlert", aria-label="close")&times;
             p(id="textAlerta")
                 strong ¡Alerta!
                 |  Debe seleccionar al menos una opción.
-
-
         div(class="row")
             div(class="col-sm-1")
                 h3

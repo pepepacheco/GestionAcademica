@@ -33,8 +33,15 @@ html
                                         a(href='/matricula/create') Nueva matrícula
                                     li
                                         a(href='/matricula/read') Listar matrículas
-                            li
-                                a(href='#') Asignar asignaturas
+                            li.dropdown
+                                a.dropdown-toggle(data-toggle='dropdown', href='#')
+                                    | Asignar asignatura
+                                    span.caret
+                                ul.dropdown-menu
+                                    li
+                                        a(href='/asignacion/create') Nueva Asignacion
+                                    li
+                                        a(href='/asignacion/read') Listar asignaciones
 
 
 

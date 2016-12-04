@@ -45,14 +45,6 @@ router.get('/read', function(req, res, next) {
 });
 
 router.post('/read', function(req, res, next) {
-    /*
-    console.log(req.body._id);
-    console.log(req.body.id);
-    console.log(req.body.asignaturaId);
-    console.log(req.body.alumnoId);
-    console.log(req.body.fecha_inicio);
-    console.log(req.body.fecha_fin);
-    */
     mongoose.model("Alumno").findOne({"_id" : req.body.alumnoId}, function(err, alumno) {
         mongoose.model("Asignatura").findOne({"_id" : req.body.asignaturaId}, function(err, asignatura) {
             mongoose.model("Matricula").findOneAndUpdate({"_id" : req.body._id}, {
@@ -88,6 +80,8 @@ router.put('/create', function(req, res, next) {
                 matriculaInsert.save(function (err, doc) {
                     if (!err)
                         res.json({status : "ok"});
+                    else
+                        res.send({status: "error"})
                 })
             });     
         }); 

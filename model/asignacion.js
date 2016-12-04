@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var asignacion = new mongoose.schema({
+var asignacion = new mongoose.Schema({
     "id" : Number,
     "profesor" : mongoose.model('Profesor').schema,
     "asignatura" : mongoose.model('Asignatura').schema,
@@ -12,4 +12,3 @@ var asignacion = new mongoose.schema({
 });
 
 mongoose.model('Asignacion', asignacion);
-
