@@ -61,7 +61,6 @@ router.post('/read', function(req, res, next) {
             })
         });
     });
-
 });
 
 router.put('/create', function(req, res, next) {
@@ -76,7 +75,6 @@ router.put('/create', function(req, res, next) {
                     "fecha_inicio" : req.body.fecha_inicio,
                     "fecha_fin" : req.body.fecha_fin
                 });
-
                 matriculaInsert.save(function (err, doc) {
                     if (!err)
                         res.json({status : "ok"});

@@ -62,7 +62,7 @@ block content
                         each asignatura, i in listaAsignaturas
                             tr(id="#{asignatura._id}")                       
                                 td
-                                    input(type="checkbox", name="id" value="#{asignatura._id}")
+                                    input(type="checkbox", name="id", value="#{asignatura._id}")
                                 td #{asignatura.id}
                                 td #{asignatura.nombre}
                                 td #{asignatura.ciclo}

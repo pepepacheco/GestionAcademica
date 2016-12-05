@@ -1,0 +1,87 @@
+extends layout
+block content
+    body(onLoad="eventButton()")
+        div(id="alerta", class="alert alert-warning", style="display:None; margin-top:25px")
+            a(href="#" class="close" id="closeAlert", aria-label="close")&times;
+            strong ¡Alerta!
+            |  Debe seleccionar al menos una opción.
+        div(id="myModal", class="modal fade", role="dialog")     
+            div(class="modal-dialog")
+                div(class="modal-content")
+                    div(id="alertaModal", class="alert alert-warning", style="display:None; margin-top:25px")
+                        a(href="#" class="close" onclick="closeAlertModal()", aria-label="close")&times;
+                        p(id="textAlertaModal")
+                            strong ¡Alerta!
+                            |  Debe seleccionar al menos una opción.                 
+                    div(class="modal-header")
+                        button(type="button", class="close", data-dismiss="modal") &times;
+                        h4(class="modal-title") Modificación de Matricula
+                    div(class="modal-body")
+                        div(class="form-horizontal")
+                            div(class='form-group')
+                                label(class="control-label col-sm-2") id
+                                div(class="col-sm-10")
+                                    input(class="form-control-static", id='idUpdate', class='form-control')
+                            div(class='form-group')    
+                                label(class="control-label col-sm-2") Profesor
+                                div(class="col-sm-10")
+                                    select(id='profesorUpdate', class='form-control')
+                                        each profesor, i in data.profesores
+                                            option(value="#{profesor._id}") #{profesor.nombre} #{profesor.apellidos}
+                            div(class='form-group')    
+                                label(class="control-label col-sm-2") Asignatura
+                                div(class="col-sm-10")
+                                    select(id='asignaturaUpdate', class='form-control')
+                                        each asignatura, i in data.asignaturas
+                                            option(value="#{asignatura._id}") #{asignatura.nombre}
+                            div(class='form-group')
+                                label(class="control-label col-sm-2") Horas
+                                div(class="col-sm-10")
+                                    input(class="form-control-static", id='horasUpdate', class='form-control')
+                            div(class='form-group')    
+                                label(class="control-label col-sm-2") Fecha de Inicio
+                                div(class="col-sm-10")
+                                    input(class='form-control', id="fechaInicioUpdate")
+                            div(class='form-group')    
+                                label(class="control-label col-sm-2") Fecha de finalización
+                                div(class="col-sm-10")
+                                    input(id='fechaFinUpdate', class='form-control')
+                            div(class='form-group') 
+                                div(class="control-label col-sm-2")
+                                    button(id="buttonUpdateModal", onclick="updateAsignacion()", class='btn btn-success', class="glyphicon glyphicon-send", title="enviar")
+                    div(class="modal-footer")
+                        button(type="button", class="btn btn-info", data-dismiss="modal") Cerrar   
+        div(class="row")
+            div(class="col-sm-1")
+                h3
+                    a(href="/", class="glyphicon glyphicon-arrow-left")
+            div(class="col-sm-11")
+                h3 Lista de Asignacion                        
+        div
+            table(class="table", id="table")
+                div(id="form")
+                    tr
+                        th
+                            input(type="checkbox", id="selectAll")
+                        th id
+                        th Profesor
+                        th Asignatura
+                        th Horas
+                        th Fecha de Inicio
+                        th Fecha de Finalización
+                        th 
+                            button(id="buttonRemoveAllAjax", type="button", class="btn btn-warning") Eliminar Seleccionados
+                        each asignacion, i in listaAsignaciones
+                            tr(id="#{asignacion._id}")                       
+                                td
+                                    input(type="checkbox", name="id", value="#{asignacion._id}")
+                                td #{asignacion.id}
+                                td #{asignacion.profesor.nombre} #{asignacion.profesor.apellidos}
+                                td #{asignacion.asignatura.nombre}
+                                td #{asignacion.horas}
+                                td #{asignacion.fecha_inicio}
+                                td #{asignacion.fecha_fin}
+                                td
+                                    div
+                                        button(type="button", id="buttonAsignacionUpdate", value="#{asignacion._id}", class='btn btn-info', style="margin-right: 5%;", data-toggle="modal", data-target="#myModal") Modificar               
+                                        button(id="buttonRemoveAjax", value="#{asignacion._id}", class='btn btn-danger') Eliminar

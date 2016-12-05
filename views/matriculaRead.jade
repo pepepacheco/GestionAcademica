@@ -19,32 +19,32 @@ block content
                     div(class="modal-body")
                         div(class="form-horizontal")
                             div(class='form-group')
-                                label(class="control-label col-sm-2", for='idUpdate') id
+                                label(class="control-label col-sm-2") id
                                 div(class="col-sm-10")
-                                    input(class="form-control-static", name='idUpdate', id='idUpdate', class='form-control', type="number", required)
+                                    input(class="form-control-static", id='idUpdate', class='form-control')
                             div(class='form-group')    
-                                label(class="control-label col-sm-2", for='asignaturaUpdate') Asignatura
+                                label(class="control-label col-sm-2") Asignatura
                                 div(class="col-sm-10")
-                                    select(id='asignaturaUpdate', class='form-control', type='text', required)
+                                    select(id='asignaturaUpdate', class='form-control')
                                         each asignatura, i in datos[0]
                                             option(value="#{asignatura._id}") #{asignatura.nombre}
                             div(class='form-group')    
-                                label(class="control-label col-sm-2", for='alumnoUpdate') Alumno
+                                label(class="control-label col-sm-2") Alumno
                                 div(class="col-sm-10")
-                                    select(id='alumnoUpdate', class='form-control', type='text', required)
+                                    select(id='alumnoUpdate', class='form-control')
                                         each alumno, i in datos[1]
                                             option(value="#{alumno._id}") #{alumno.nombre} #{alumno.apellidos}
                             div(class='form-group')    
-                                label(class="control-label col-sm-2",for='fechaInicioUpdate') Fecha de Inicio
+                                label(class="control-label col-sm-2") Fecha de Inicio
                                 div(class="col-sm-10")
-                                    input(name='FechaInicioUpdate', id='fechaInicioUpdate', class='form-control', type='text', required)
+                                    input(id="fechaInicioUpdate", class='form-control')
                             div(class='form-group')    
-                                label(class="control-label col-sm-2",for='fechaFinUpdate') Fecha de finalización
+                                label(class="control-label col-sm-2") Fecha de finalización
                                 div(class="col-sm-10")
-                                    input(name='FechaFinUpdate', id='fechaFinUpdate', class='form-control', type='text', min="1", max="8", required)
+                                    input(id='fechaFinUpdate', class='form-control')
                             div(class='form-group') 
                                 div(class="control-label col-sm-2")
-                                    button(id="buttonUpdateModal", name="_idUpdate", onclick="updateMatricula()", class='btn btn-success', class="glyphicon glyphicon-send", title="enviar")
+                                    button(id="buttonUpdateModal", onclick="updateMatricula()", class='btn btn-success', class="glyphicon glyphicon-send", title="enviar")
                     div(class="modal-footer")
                         button(type="button", class="btn btn-info", data-dismiss="modal") Cerrar   
         div(class="row")
@@ -69,7 +69,7 @@ block content
                         each matricula, i in listaMatriculas
                             tr(id="#{matricula._id}")                       
                                 td
-                                    input(type="checkbox", name="id" value="#{matricula._id}")
+                                    input(type="checkbox", name="id", value="#{matricula._id}")
                                 td #{matricula.id}
                                 td #{matricula.asignatura.nombre}
                                 td #{matricula.alumno.nombre} #{matricula.alumno.apellidos}
@@ -78,4 +78,4 @@ block content
                                 td
                                     div
                                         button(type="button", id="buttonMatriculaUpdate", value="#{matricula._id}", class='btn btn-info', style="margin-right: 5%;", data-toggle="modal", data-target="#myModal") Modificar               
-                                        button(id="buttonRemoveAjax", name="id", value="#{matricula._id}", class='btn btn-danger') Eliminar
+                                        button(id="buttonRemoveAjax", value="#{matricula._id}", class='btn btn-danger') Eliminar
