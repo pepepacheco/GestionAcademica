@@ -1,0 +1,92 @@
+[
+    {
+        "id" : 1,
+        "asignatura" : {
+            "id" : "1",
+            "nombre" : "Acceso a datos",
+            "ciclo" : "Desarrollo de aplicaciones multiplataforma",
+            "curso" : "Segundo",
+            "horas" : "5"
+        },
+        "alumno" : {
+            "id":1,
+            "nombre":"Wanda",
+            "apellidos":"Gordon",
+            "email":"wgordon0@zdnet.com"
+        },
+        "fecha_inicio" : "09/21/2016",
+        "fecha_fin" : "03/21/2017"
+    },
+    {
+        "id" : 2,
+        "asignatura" : {
+            "id" : "2",
+            "nombre" : "Desarrollo de Interfaces",
+            "ciclo" : "Desarrollo de aplicaciones multiplataforma",
+            "curso" : "Segundo",
+            "horas" : "8"
+        },
+        "alumno" : {
+            "id":2,
+            "nombre":"Jack",
+            "apellidos":"Hughes",
+            "email":"jhughes1@meetup.com"
+        },
+        "fecha_inicio" : "09/21/2016",
+        "fecha_fin" : "03/21/2017"
+    },
+    {
+        "id" : 3,
+        "asignatura" : {
+            "id" : "3",	
+            "nombre" : "Programacion de servicios y procesos",
+            "ciclo" : "Desarrollo de aplicaciones multiplataforma",
+            "curso" : "Segundo",
+            "horas" : "3"
+        },
+        "alumno" : {
+            "id":3,
+            "nombre":"Victor",
+            "apellidos":"Knight",
+            "email":"vknight2@behance.net"
+        },
+        "fecha_inicio" : "09/21/2016",
+        "fecha_fin" : "03/21/2017"
+    },
+    {
+        "id" : 4,
+        "asignatura" : {
+            "id" : "4",
+            "nombre" : "Programacion multimedia y dispositivos moviles",
+            "ciclo" : "Desarrollo de aplicaciones multiplataforma",
+            "curso" : "Segundo",
+            "horas" : "6"
+        },
+        "alumno" : {
+            "id":4,
+            "nombre":"Michael",
+            "apellidos":"Shaw",
+            "email":"mshaw3@cnbc.com"
+        },
+        "fecha_inicio" : "09/21/2016",
+        "fecha_fin" : "03/21/2017"
+    },
+    {
+        "id" : 5,
+        "asignatura" : {
+            "id" : "5",
+            "nombre" : "Sistemas de gestion empresarial",
+            "ciclo" : "Desarrollo de aplicaciones multiplataforma",
+            "curso" : "Segundo",
+            "horas" : "4"
+        },
+        "alumno" : {
+            "id":5,
+            "nombre":"Billy",
+            "apellidos":"Williams",
+            "email":"bwilliams4@patch.com"            
+        },
+        "fecha_inicio" : "09/21/2016",
+        "fecha_fin" : "03/21/2017"
+    }          
+]

@@ -3,6 +3,8 @@ var db = require('./model/db.js');
 var profesores = require("./model/profesor.js");
 var asignaturas = require('./model/asignatura.js');
 var alumnos = require('./model/alumno.js');
+var matriculas = require('./model/matricula.js');
+var asignaciones = require('./model/asignacion.js');
 var fs = require("fs");
 var args = process.argv;
 
@@ -15,17 +17,14 @@ if (args[2] === "create") {
             alumno.create(alumnos, function(err, result) {
                 if (!err) {
                     console.log(result.length + ' Alumnos insertados');
-                    mongoose.connection.close();
                 }
                 else {
                     console.log("error al insertar datos");
-                    mongoose.connection.close();
                 }
             })
         }
         else {
             console.log("error de lectura de fichero");
-            mongoose.connection.close();
         }
     });
 
@@ -37,17 +36,14 @@ if (args[2] === "create") {
             profesor.create(profesores, function(err, result) {
                 if (!err) {
                     console.log(result.length + ' Profesores insertados');
-                    mongoose.connection.close();
                 }
                 else {
                     console.log("error al insertar datos");
-                    mongoose.connection.close();
                 }
             })
         }
         else {
             console.log("error de lectura de fichero");
-            mongoose.connection.close();
         }
     });
 
@@ -59,47 +55,92 @@ if (args[2] === "create") {
             asignatura.create(asignaturas, function(err, result) {
                 if (!err) {
                     console.log(result.length + ' Asignaturas insertadas');
-                    mongoose.connection.close();
                 }
                 else {
                     console.log("error al insertar datos");
-                    mongoose.connection.close();
                 }
             })
         }
         else {
             console.log("error de lectura de fichero");
-            mongoose.connection.close();
         }
     });
+
+    //Crear matriculas
+    fs.readFile('./datos/matriculas.json', 'UTF-8', function (err, data) {
+        if (!err) {
+            var matriculas = JSON.parse(data);
+            mongoose.model('Matricula').create(matriculas, function (err, result) {
+                if (!err) {
+                    console.log(result.length + ' Matriculas insertadas');
+                }
+                else {
+                    console.log("error al insertar datos");
+                }
+            });
+        }
+        else {
+            console.log("error de lectura de fichero");
+        }        
+    });
+
+    //crear asignaciones
+    fs.readFile('./datos/asignaciones.json', 'UTF-8', function (err, data) {
+        if (!err) {
+            var asignaciones = JSON.parse(data);          
+            mongoose.model('Asignacion').create(asignaciones, function (err, result) {
+                if (!err) {
+                    console.log(result.length + ' Asignaciones insertadas');
+                }
+                else {
+                    console.log("error al insertar datos");
+                }
+            });
+            
+        }
+        else {
+            console.log("error de lectura de fichero");
+        }        
+    });
+
+    if (mongoose.connection !== undefined)
+        mongoose.connection.close();    
 }
 
 //Limpiar tablas
 else if (args[2] === "clear") {
-    var alumno = mongoose.model("Alumno");
-    var profesor = mongoose.model("Profesor");
-    var asignatura = mongoose.model("Asignatura");
-
-    alumno.remove({}, function (err, doc) {
+    mongoose.model("Alumno").remove({}, function (err, doc) {
         if (!err) {
             console.log('Colección Alumno limpiada correctamente');
-            mongoose.connection.close();
         }
     });
 
-    profesor.remove({}, function (err, doc) {
+    mongoose.model("Profesor").remove({}, function (err, doc) {
         if (!err) {
             console.log('Colección Profesor limpiada correctamente');
-            mongoose.connection.close();
         }
     });
 
-    asignatura.remove({}, function (err, doc) {
+    mongoose.model("Asignatura").remove({}, function (err, doc) {
         if (!err) {
             console.log('Colección Asignatura limpiada correctamente');
-            mongoose.connection.close();
         }
-    });        
+    });
+
+    mongoose.model('Matricula').remove({}, function (err, doc) {
+        if (!err) {
+            console.log('Colección Matriculas limpiada correctamente');         
+        }
+    }); 
+
+    mongoose.model('Asignacion').remove({}, function (err, doc) {
+        if (!err) {
+            console.log('Colección Asignacion limpiada correctamente');          
+        }
+    });
+
+    if (mongoose.connection !== undefined)
+        mongoose.connection.close();
 }
 
 else {

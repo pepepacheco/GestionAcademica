@@ -1,0 +1,97 @@
+[
+    {
+        "id" : 1,
+        "profesor" : {
+            "id" : 1,
+            "nombre" : "Jacinto D.",
+            "apellidos" : "Cabrera Rodriguez",
+            "email" : "jacinto@iesvirgendelcarmen.com"
+        },
+        "asignatura" : {
+            "id" : "4",
+            "nombre" : "Programacion multimedia y dispositivos moviles",
+            "ciclo" : "Desarrollo de aplicaciones multiplataforma",
+            "curso" : "Segundo",
+            "horas" : "6"
+        },
+        "horas" : 6,
+        "fecha_inicio" : "09/21/2016",
+        "fecha_fin" : "03/21/2017"
+    },
+    {
+        "id" : 2,
+        "profesor" : {
+            "id" : 2,
+            "nombre" : "Manuel",
+            "apellidos" : "Molino Milla",
+            "email" : "manuel@iesvirgendelcarmen.com"
+        },
+        "asignatura" : {
+            "id" : "3",	
+            "nombre" : "Programacion de servicios y procesos",
+            "ciclo" : "Desarrollo de aplicaciones multiplataforma",
+            "curso" : "Segundo",
+            "horas" : "3"
+        },
+        "horas" : 3,
+        "fecha_inicio" : "09/21/2016",
+        "fecha_fin" : "03/21/2017"
+    },
+    {
+        "id" : 3,
+        "profesor" : {
+            "id" : 3,
+            "nombre" : "Luis Jose",
+            "apellidos" : "Molina Garzo",
+            "email" : "luis@iesvirgendelcarmen.com"
+        },
+        "asignatura" : {
+            "id" : "2",
+            "nombre" : "Desarrollo de Interfaces",
+            "ciclo" : "Desarrollo de aplicaciones multiplataforma",
+            "curso" : "Segundo",
+            "horas" : "8"
+        },
+        "horas" : 8,
+        "fecha_inicio" : "09/21/2016",
+        "fecha_fin" : "03/21/2017"
+    },
+    {
+        "id" : 4,
+        "profesor" : {
+            "id" : 4,
+            "nombre" : "Juan Gualberto",
+            "apellidos" : "Gutierrez Marin",
+            "email" : "juangu@iesvirgendelcarmen.com"
+        },
+        "asignatura" : {
+            "id" : "1",
+            "nombre" : "Acceso a datos",
+            "ciclo" : "Desarrollo de aplicaciones multiplataforma",
+            "curso" : "Segundo",
+            "horas" : "5"
+        },
+        "horas" : 5,
+        "fecha_inicio" : "09/21/2016",
+        "fecha_fin" : "03/21/2017"
+    },    
+    {
+        "id" : 5,
+        "profesor" : {
+            "id" : 5,
+            "nombre" : "Juan Jose",
+            "apellidos" : "Serrano",
+            "email" : "juanjo@iesvirgendelcarmen.com"
+        },
+        "asignatura" : {
+            "id" : "5",
+            "nombre" : "Sistemas de gestion empresarial",
+            "ciclo" : "Desarrollo de aplicaciones multiplataforma",
+            "curso" : "Segundo",
+            "horas" : "4"
+        },
+        "horas" : 4,
+        "fecha_inicio" : "09/21/2016",
+        "fecha_fin" : "03/21/2017"
+    } 
+]

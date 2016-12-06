@@ -33,11 +33,13 @@ block content
             div(class='form-group')
                 label(class="control-label col-sm-1", for='fechaInicioCreate') Fecha de inicio
                 div(class="col-sm-11")
+                    p Formato: MM/DD/YYYY HH:MM:SS AM|PM
                     input("form-control-static", id='fechaInicio', class='form-control', pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}", required)       
 
             div(class='form-group')
                 label(class="control-label col-sm-1", for='fechaFinCreate') Fecha de finalización
                 div(class="col-sm-11")
+                    p Formato: MM/DD/YYYY HH:MM:SS AM|PM
                     input("form-control-static", id='fechaFin', class='form-control', pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}", required)                                
             div(class='form-group') 
                 div(class="control-label col-sm-1")
